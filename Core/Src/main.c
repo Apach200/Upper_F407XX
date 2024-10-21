@@ -15,8 +15,9 @@
   *
   *
   *
-  *			LOWER__PCBmodul__STM32_F4VE_V2.0-2
+  *			UPPER__Located__PCBmodul__STM32F407
   *
+  *				NodeID = 103
   *
   ******************************************************************************
   */
@@ -305,29 +306,27 @@ int main(void)
 	  	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_7 );
   HAL_Delay(33);
   }
-    HAL_Delay(500);
-    Local_Count = sizeof String_H;
-    String_H[Local_Count-1] = 0x0d;
-    HAL_UART_Transmit_DMA( &TerminalInterface, (uint8_t*)(String_H), Local_Count);
-    while (1){}
+
   // HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_RESET); HAL_Delay(2500);//off
 
    CANopenNodeSTM32 canOpenNodeSTM32;
    canOpenNodeSTM32.CANHandle = &hcan1;
    canOpenNodeSTM32.HWInitFunction = MX_CAN1_Init;
    canOpenNodeSTM32.timerHandle = &htim4;
-   canOpenNodeSTM32.desiredNodeID = 0x47;			//0x48
+   canOpenNodeSTM32.desiredNodeID = 0x67;			//103
    canOpenNodeSTM32.baudrate = 125*4;
    canopen_app_init(&canOpenNodeSTM32);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
 	  read_SDO (
 			    canOpenNodeSTM32.canOpenStack->SDOclient,
-			  	103,										//remote desiredNodeID
-				0x6047,										//Index_of_OD_variable_at_remote_NodeID
-				0,											//Sub_Index_of_OD_variable
+			  	72,										//remote desiredNodeID
+				0x6038,										//Index_of_OD_variable_at_remote_NodeID
+				0x0C,											//Sub_Index_of_OD_variable
 				Rx_Array,									//Saved_Received_Data
 				4,											//Number_of_Byte_to_read
 				(size_t*)&Length_of_Ext_Var );
@@ -339,73 +338,60 @@ int main(void)
 
 
 
-	  write_SDO(
-			    canOpenNodeSTM32.canOpenStack->SDOclient,
-			  	103,										//remote desiredNodeID
-				0x6047,										//Index_of_OD_variable_at_remote_NodeID
-				0,											//Sub_Index_of_OD_variable
-				Array_8u,									//
-				4);
+		  	  write_SDO(
+		  			    canOpenNodeSTM32.canOpenStack->SDOclient,
+		  			  	72,										//remote desiredNodeID
+		  				0x6038,										//Index_of_OD_variable_at_remote_NodeID
+						0x0C,											//Sub_Index_of_OD_variable
+		  				Array_8u,									//
+		  				4);
 
-	  HAL_Delay(100);
+		  	  HAL_Delay(100);
 
 
-	  read_SDO (
-			    canOpenNodeSTM32.canOpenStack->SDOclient,
-			  	103,										//remote desiredNodeID
-				0x6047,										//Index_of_OD_variable_at_remote_NodeID
-				0,											//Sub_Index_of_OD_variable
-				Rx_Array,									//Saved_Received_Data
-				4,											//Number_of_Byte_to_read
-				(size_t*)&Length_of_Ext_Var );
+  	  read_SDO (
+  			    canOpenNodeSTM32.canOpenStack->SDOclient,
+  			  	72,										//remote desiredNodeID
+  				0x6038,										//Index_of_OD_variable_at_remote_NodeID
+  				0x0C,											//Sub_Index_of_OD_variable
+  				Rx_Array,									//Saved_Received_Data
+  				4,											//Number_of_Byte_to_read
+  				(size_t*)&Length_of_Ext_Var );
 
 	  HAL_Delay(100);
 
 	  TerminalInterface.gState = HAL_UART_STATE_READY;
-		HAL_UART_Transmit_DMA( &TerminalInterface, (uint8_t*)Rx_Array, 8);
+	  HAL_UART_Transmit_DMA( &TerminalInterface, (uint8_t*)Rx_Array, 8);
 
-		HAL_Delay(100);
+	  HAL_Delay(100);
 
 
-		  OD_PERSIST_COMM.x6000_nucleo_VAR32_6000=0;
+		  OD_PERSIST_COMM.x6000_F103_VAR32_6000_TX=0;
 
 		  while (1)
 		  {
-			  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5  , canOpenNodeSTM32.outStatusLEDGreen);//включение
-			  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13 ,!canOpenNodeSTM32.outStatusLEDRed  );//включение с инверсией
+			  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, !canOpenNodeSTM32.outStatusLEDGreen);
+			  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5 ,  canOpenNodeSTM32.outStatusLEDRed  );
 
-			canopen_app_process();
-
-			if(tmp32u_1 != OD_PERSIST_COMM.x6001_nucleo_VAR32_6001)
-				{
-				tmp32u_1 = OD_PERSIST_COMM.x6001_nucleo_VAR32_6001;
-				TerminalInterface.gState = HAL_UART_STATE_READY;
-				HAL_UART_Transmit_DMA( &TerminalInterface, (uint8_t*)(&tmp32u_1), 4);
-				}
+			  canopen_app_process();
 
 
-			  if(HAL_GetTick() - Ticks>749)
-			  {
-				Ticks = HAL_GetTick();
+			  		  if(HAL_GetTick() - Ticks>499)
+			  		  {Ticks = HAL_GetTick();}
 
-				OD_PERSIST_COMM.x6000_nucleo_VAR32_6000++;
+			  			if(tmp32u_0 != OD_PERSIST_COMM.x6001_F103_VAR32_6001R)
+			  			{
+			  			tmp32u_0 = OD_PERSIST_COMM.x6001_F103_VAR32_6001R;
+			  			huart1.gState = HAL_UART_STATE_READY;
+			  			HAL_UART_Transmit_DMA( &huart1, (uint8_t*)(&tmp32u_0), 4);
+			  			}
 
-				tmp32u_0 = OD_PERSIST_COMM.x6000_nucleo_VAR32_6000++;
-
-				CO_TPDOsendRequest(&canOpenNodeSTM32.canOpenStack->TPDO[0] );
-
-				TerminalInterface.gState = HAL_UART_STATE_READY;
-				HAL_UART_Transmit_DMA( &TerminalInterface, (uint8_t*)( &tmp32u_0 ), 4);
-
-				Local_Count++;
-				Local_Count = Local_Count%4;
-
-				if(Local_Count==0){
-									OD_PERSIST_COMM.x6038_nucleo_Array[0]++;
-								  }
-
-				CO_TPDOsendRequest(&canOpenNodeSTM32.canOpenStack->TPDO[Local_Count] );
-			  }
+			  			if(tmp32u_1 != OD_PERSIST_COMM.x6002_F103_VAR32_6002R)
+			  			{
+			  				tmp32u_1 = OD_PERSIST_COMM.x6002_F103_VAR32_6002R;
+			  			huart1.gState = HAL_UART_STATE_READY;
+			  			HAL_UART_Transmit_DMA( &huart1, (uint8_t*)(&tmp32u_1), 4);
+			  			}
 
     /* USER CODE END WHILE */
 
