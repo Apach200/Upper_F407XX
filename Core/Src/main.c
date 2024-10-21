@@ -326,7 +326,7 @@ int main(void)
 			    canOpenNodeSTM32.canOpenStack->SDOclient,
 			  	72,										//remote desiredNodeID
 				0x6038,										//Index_of_OD_variable_at_remote_NodeID
-				0x0C,											//Sub_Index_of_OD_variable
+				0x0E,											//Sub_Index_of_OD_variable
 				Rx_Array,									//Saved_Received_Data
 				4,											//Number_of_Byte_to_read
 				(size_t*)&Length_of_Ext_Var );
@@ -342,7 +342,7 @@ int main(void)
 		  			    canOpenNodeSTM32.canOpenStack->SDOclient,
 		  			  	72,										//remote desiredNodeID
 		  				0x6038,										//Index_of_OD_variable_at_remote_NodeID
-						0x0C,											//Sub_Index_of_OD_variable
+						0x0E,											//Sub_Index_of_OD_variable
 		  				Array_8u,									//
 		  				4);
 
@@ -353,7 +353,7 @@ int main(void)
   			    canOpenNodeSTM32.canOpenStack->SDOclient,
   			  	72,										//remote desiredNodeID
   				0x6038,										//Index_of_OD_variable_at_remote_NodeID
-  				0x0C,											//Sub_Index_of_OD_variable
+  				0x0E,											//Sub_Index_of_OD_variable
   				Rx_Array,									//Saved_Received_Data
   				4,											//Number_of_Byte_to_read
   				(size_t*)&Length_of_Ext_Var );
@@ -378,6 +378,7 @@ int main(void)
 			  			if(tmp32u_0 != OD_PERSIST_COMM.x6001_F103_VAR32_6001R)
 			  			{
 			  			tmp32u_0 = OD_PERSIST_COMM.x6001_F103_VAR32_6001R;
+
 			  			TerminalInterface.gState = HAL_UART_STATE_READY;
 			  			HAL_UART_Transmit_DMA( &TerminalInterface, (uint8_t*)(&tmp32u_0), 4);
 			  			}
@@ -390,7 +391,7 @@ int main(void)
 			  			}
 
 
-			  		  if(HAL_GetTick() - Ticks>449)
+			  		  if(HAL_GetTick() - Ticks>999)
 			  		  {
 			  			  Ticks = HAL_GetTick();
 			  			CO_TPDOsendRequest(&canOpenNodeSTM32.canOpenStack->TPDO[0] );
