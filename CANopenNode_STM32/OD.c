@@ -117,12 +117,12 @@ OD_ATTR_PERSIST_COMM OD_PERSIST_COMM_t OD_PERSIST_COMM = {
         .applicationObject7 = 0x00000000,
         .applicationObject8 = 0x00000000
     },
-    .x6000_F103_VAR32_6000_TX = 857870592,
-    .x6001_F103_VAR32_6001R = 0x01010101,
-    .x6002_F103_VAR32_6002R = 0x02020202,
-    .x6003_F103_VAR64_6003_TX = 0x0303030303030300,
-    .x6004_F103_VAR64_6004_TX = 0x0404040404040400,
-    .x6047_F103_T = 0x47474747
+    .x6000_upper_F4XX_VAR32_6000_TX = 857870592,
+    .x6001_upper_F4XX_VAR32_6001R = 0x01010101,
+    .x6002_upper_F4XX_VAR32_6002R = 0x02020202,
+    .x6003_upper_F4XX_VAR64_6003_TX = 0x0303030303030300,
+    .x6004_upper_F4XX_VAR64_6004_TX = 0x0404040404040400,
+    .x6047_upper_F4XX_T = 0x47474747
 };
 
 OD_ATTR_RAM OD_RAM_t OD_RAM = {
@@ -169,12 +169,12 @@ typedef struct {
     OD_obj_record_t o_1801_TPDOCommunicationParameter[6];
     OD_obj_record_t o_1A00_TPDOMappingParameter[9];
     OD_obj_record_t o_1A01_TPDOMappingParameter[9];
-    OD_obj_var_t o_6000_F103_VAR32_6000_TX;
-    OD_obj_var_t o_6001_F103_VAR32_6001R;
-    OD_obj_var_t o_6002_F103_VAR32_6002R;
-    OD_obj_var_t o_6003_F103_VAR64_6003_TX;
-    OD_obj_var_t o_6004_F103_VAR64_6004_TX;
-    OD_obj_var_t o_6047_F103_T;
+    OD_obj_var_t o_6000_upper_F4XX_VAR32_6000_TX;
+    OD_obj_var_t o_6001_upper_F4XX_VAR32_6001R;
+    OD_obj_var_t o_6002_upper_F4XX_VAR32_6002R;
+    OD_obj_var_t o_6003_upper_F4XX_VAR64_6003_TX;
+    OD_obj_var_t o_6004_upper_F4XX_VAR64_6004_TX;
+    OD_obj_var_t o_6047_upper_F4XX_T;
 } ODObjs_t;
 
 static CO_PROGMEM ODObjs_t ODObjs = {
@@ -690,33 +690,33 @@ static CO_PROGMEM ODObjs_t ODObjs = {
             .dataLength = 4
         }
     },
-    .o_6000_F103_VAR32_6000_TX = {
-        .dataOrig = &OD_PERSIST_COMM.x6000_F103_VAR32_6000_TX,
+    .o_6000_upper_F4XX_VAR32_6000_TX = {
+        .dataOrig = &OD_PERSIST_COMM.x6000_upper_F4XX_VAR32_6000_TX,
         .attribute = ODA_SDO_RW | ODA_TPDO | ODA_MB,
         .dataLength = 4
     },
-    .o_6001_F103_VAR32_6001R = {
-        .dataOrig = &OD_PERSIST_COMM.x6001_F103_VAR32_6001R,
+    .o_6001_upper_F4XX_VAR32_6001R = {
+        .dataOrig = &OD_PERSIST_COMM.x6001_upper_F4XX_VAR32_6001R,
         .attribute = ODA_SDO_RW | ODA_RPDO | ODA_MB,
         .dataLength = 4
     },
-    .o_6002_F103_VAR32_6002R = {
-        .dataOrig = &OD_PERSIST_COMM.x6002_F103_VAR32_6002R,
+    .o_6002_upper_F4XX_VAR32_6002R = {
+        .dataOrig = &OD_PERSIST_COMM.x6002_upper_F4XX_VAR32_6002R,
         .attribute = ODA_SDO_RW | ODA_RPDO | ODA_MB,
         .dataLength = 4
     },
-    .o_6003_F103_VAR64_6003_TX = {
-        .dataOrig = &OD_PERSIST_COMM.x6003_F103_VAR64_6003_TX,
+    .o_6003_upper_F4XX_VAR64_6003_TX = {
+        .dataOrig = &OD_PERSIST_COMM.x6003_upper_F4XX_VAR64_6003_TX,
         .attribute = ODA_SDO_RW | ODA_TPDO | ODA_MB,
         .dataLength = 8
     },
-    .o_6004_F103_VAR64_6004_TX = {
-        .dataOrig = &OD_PERSIST_COMM.x6004_F103_VAR64_6004_TX,
+    .o_6004_upper_F4XX_VAR64_6004_TX = {
+        .dataOrig = &OD_PERSIST_COMM.x6004_upper_F4XX_VAR64_6004_TX,
         .attribute = ODA_SDO_RW | ODA_TPDO | ODA_MB,
         .dataLength = 8
     },
-    .o_6047_F103_T = {
-        .dataOrig = &OD_PERSIST_COMM.x6047_F103_T,
+    .o_6047_upper_F4XX_T = {
+        .dataOrig = &OD_PERSIST_COMM.x6047_upper_F4XX_T,
         .attribute = ODA_SDO_RW | ODA_TPDO | ODA_MB,
         .dataLength = 4
     }
@@ -752,12 +752,12 @@ static OD_ATTR_OD OD_entry_t ODList[] = {
     {0x1801, 0x06, ODT_REC, &ODObjs.o_1801_TPDOCommunicationParameter, NULL},
     {0x1A00, 0x09, ODT_REC, &ODObjs.o_1A00_TPDOMappingParameter, NULL},
     {0x1A01, 0x09, ODT_REC, &ODObjs.o_1A01_TPDOMappingParameter, NULL},
-    {0x6000, 0x01, ODT_VAR, &ODObjs.o_6000_F103_VAR32_6000_TX, NULL},
-    {0x6001, 0x01, ODT_VAR, &ODObjs.o_6001_F103_VAR32_6001R, NULL},
-    {0x6002, 0x01, ODT_VAR, &ODObjs.o_6002_F103_VAR32_6002R, NULL},
-    {0x6003, 0x01, ODT_VAR, &ODObjs.o_6003_F103_VAR64_6003_TX, NULL},
-    {0x6004, 0x01, ODT_VAR, &ODObjs.o_6004_F103_VAR64_6004_TX, NULL},
-    {0x6047, 0x01, ODT_VAR, &ODObjs.o_6047_F103_T, NULL},
+    {0x6000, 0x01, ODT_VAR, &ODObjs.o_6000_upper_F4XX_VAR32_6000_TX, NULL},
+    {0x6001, 0x01, ODT_VAR, &ODObjs.o_6001_upper_F4XX_VAR32_6001R, NULL},
+    {0x6002, 0x01, ODT_VAR, &ODObjs.o_6002_upper_F4XX_VAR32_6002R, NULL},
+    {0x6003, 0x01, ODT_VAR, &ODObjs.o_6003_upper_F4XX_VAR64_6003_TX, NULL},
+    {0x6004, 0x01, ODT_VAR, &ODObjs.o_6004_upper_F4XX_VAR64_6004_TX, NULL},
+    {0x6047, 0x01, ODT_VAR, &ODObjs.o_6047_upper_F4XX_T, NULL},
     {0x0000, 0x00, 0, NULL, NULL}
 };
 

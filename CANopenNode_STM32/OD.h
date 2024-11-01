@@ -16,14 +16,14 @@
 
         Created:      23.11.2020 16:00:00
         Created By:   
-        Modified:     21.10.2024 20:16:11
+        Modified:     01.11.2024 20:10:38
         Modified By:  
 
     Device Info:
-        Vendor Name:  
-        Vendor ID:    
-        Product Name: Blue_Pill_F103
-        Product ID:   0x103
+        Vendor Name:  Chromos_A
+        Vendor ID:    0xAFFEFFd
+        Product Name: Upper_F407XX
+        Product ID:   0x3d
 
         Description:  
 *******************************************************************************/
@@ -157,12 +157,12 @@ typedef struct {
         uint32_t applicationObject7;
         uint32_t applicationObject8;
     } x1A01_TPDOMappingParameter;
-    int32_t x6000_F103_VAR32_6000_TX;
-    uint32_t x6001_F103_VAR32_6001R;
-    uint32_t x6002_F103_VAR32_6002R;
-    uint64_t x6003_F103_VAR64_6003_TX;
-    uint64_t x6004_F103_VAR64_6004_TX;
-    uint32_t x6047_F103_T;
+    int32_t x6000_upper_F4XX_VAR32_6000_TX;
+    uint32_t x6001_upper_F4XX_VAR32_6001R;
+    uint32_t x6002_upper_F4XX_VAR32_6002R;
+    uint64_t x6003_upper_F4XX_VAR64_6003_TX;
+    uint64_t x6004_upper_F4XX_VAR64_6004_TX;
+    uint32_t x6047_upper_F4XX_T;
 } OD_PERSIST_COMM_t;
 
 typedef struct {
@@ -258,12 +258,12 @@ extern OD_ATTR_OD OD_t *OD;
 #define OD_ENTRY_H1801_TPDOCommunicationParameter &OD->list[22]
 #define OD_ENTRY_H1A00_TPDOMappingParameter &OD->list[23]
 #define OD_ENTRY_H1A01_TPDOMappingParameter &OD->list[24]
-#define OD_ENTRY_H6000_F103_VAR32_6000_TX &OD->list[25]
-#define OD_ENTRY_H6001_F103_VAR32_6001R &OD->list[26]
-#define OD_ENTRY_H6002_F103_VAR32_6002R &OD->list[27]
-#define OD_ENTRY_H6003_F103_VAR64_6003_TX &OD->list[28]
-#define OD_ENTRY_H6004_F103_VAR64_6004_TX &OD->list[29]
-#define OD_ENTRY_H6047_F103_T &OD->list[30]
+#define OD_ENTRY_H6000_upper_F4XX_VAR32_6000_TX &OD->list[25]
+#define OD_ENTRY_H6001_upper_F4XX_VAR32_6001R &OD->list[26]
+#define OD_ENTRY_H6002_upper_F4XX_VAR32_6002R &OD->list[27]
+#define OD_ENTRY_H6003_upper_F4XX_VAR64_6003_TX &OD->list[28]
+#define OD_ENTRY_H6004_upper_F4XX_VAR64_6004_TX &OD->list[29]
+#define OD_ENTRY_H6047_upper_F4XX_T &OD->list[30]
 
 
 /*******************************************************************************

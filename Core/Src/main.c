@@ -366,7 +366,7 @@ int main(void)
 	  HAL_Delay(100);
 
 
-		  OD_PERSIST_COMM.x6000_F103_VAR32_6000_TX=0;
+		  OD_PERSIST_COMM.x6000_upper_F4XX_VAR32_6000_TX=0;
 		  Local_Count=0;
 		  while (1)
 		  {
@@ -375,17 +375,17 @@ int main(void)
 
 			  canopen_app_process();
 
-			  			if(tmp32u_0 != OD_PERSIST_COMM.x6001_F103_VAR32_6001R)
+			  			if(tmp32u_0 != OD_PERSIST_COMM.x6001_upper_F4XX_VAR32_6001R)
 			  			{
-			  			tmp32u_0 = OD_PERSIST_COMM.x6001_F103_VAR32_6001R;
+			  			tmp32u_0 = OD_PERSIST_COMM.x6001_upper_F4XX_VAR32_6001R;
 
 			  			TerminalInterface.gState = HAL_UART_STATE_READY;
 			  			HAL_UART_Transmit_DMA( &TerminalInterface, (uint8_t*)(&tmp32u_0), 4);
 			  			}
 
-			  			if(tmp32u_1 != OD_PERSIST_COMM.x6002_F103_VAR32_6002R)
+			  			if(tmp32u_1 != OD_PERSIST_COMM.x6002_upper_F4XX_VAR32_6002R)
 			  			{
-			  			tmp32u_1 = OD_PERSIST_COMM.x6002_F103_VAR32_6002R;
+			  			tmp32u_1 = OD_PERSIST_COMM.x6002_upper_F4XX_VAR32_6002R;
 			  			TerminalInterface.gState = HAL_UART_STATE_READY;
 			  			HAL_UART_Transmit_DMA( &TerminalInterface, (uint8_t*)(&tmp32u_1), 4);
 			  			}
