@@ -1,8 +1,16 @@
-# Disco407_Blue
+# EvolutionBoard STM32F4XX from Aliexpress BLACK color. UPPER PCB at mezzanine CANOpen at STM32F407
 Синяя плата  STM32F4-Discovery. CANOpen с собственным OD.
 
 Реализовано CAN-устройство на STM32F407 (EVB STM32F4DISCOVERY ).
-Работает в паре с устройством из проекта ( 0_F407 NodeID=72)
+
+Сеть состоит из устройств из проектов 
+Disco407_Blue,
+
+Aliex_Disco407green,
+
+EvolutionBoard from Aliexpress BLACK color STM32F4XX LOWER PCB at mezzanine,
+
+EvolutionBoard from Aliexpress BLACK color STM32F4XX UPPER PCB at mezzanine
 
 
 
